@@ -13,7 +13,7 @@ class GUI:
         self.window.geometry(f"{self.window_size}")
         self.window.resizable(False, False)
         
-        self.image = Image.open("GUI-tests\pharmacy.png")
+        self.image = Image.open("testes_PFC\GUI-tests\pharmacy.png")
         image = self.image.resize((100, 100))
         image_res = ImageTk.PhotoImage(image)
         label_image = tk.Label(self.window, image=image_res, bg='#AFE9DE')
