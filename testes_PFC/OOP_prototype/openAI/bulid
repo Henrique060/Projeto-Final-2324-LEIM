@@ -1,0 +1,64 @@
+from haystack.document_stores import InMemoryDocumentStore
+from haystack import Document
+from datasets import load_dataset
+from haystack.nodes import BM25Retriever
+import os
+from getpass import getpass
+from haystack.nodes import PromptNode, PromptTemplate, AnswerParser
+from haystack.pipelines import Pipeline
+import logging
+import pandas as pd
+import json
+
+class BulID:
+
+    def __init__(self, document_store, dataset, retriever, key = "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"):
+        self.document_store = document_store
+        self.dataset = dataset
+        self.retriever = retriever
+        self.key = key
+
+    def dataset_parsed(self, doc_path):
+        with open(doc_path, "w") as f:
+            parsed_data = json.load(f)
+        self.dataset = parsed_data[0]
+        return self.dataset
+
+    def write_dataset_doc_store(self, dataset):
+        self.document_store.write_documents([Document(content=dataset)])
+        return self.document_store
+    
+    def build_retriever(self, document_store, n_docs_returned):
+        retriever = BM25Retriever(document_store=document_store, top_k=n_docs_returned)
+        return retriever
+    
+    def promt_initializer(self, key):
+        openai_key = os.getenv(key, None) or \
+            getpass("Please enter your OpenAI API key: ")
+        
+        rag_prompt= PromptTemplate(name="analysis-prompt",
+                                   prompt_text="""Synthesize a comprehensive answer from the following text for the given question.
+                             Provide a clear and concise response that summarizes the key points and information presented in the text.
+                             Your answer should be in your own words and summarized to the maximum. If summarization
+                             is not possible, the answer should be no longer than 200 words.
+                             \n\n Related text: {join(documents)} \n\n Question: {query} \n\n Answer:""",
+                    output_parser=AnswerParser(),)
+        prompt_node = PromptNode(model_name_or_path="gpt-3.5-turbo", 
+                                 api_key=openai_key, 
+                                 default_prompt_template=rag_prompt)
+        return prompt_node
+        
+    def pipeline_initializer(self):
+        #doc_store = self.document_store
+        retriever = self.retriever
+        prompt_node = self.promt_initializer(self.key)
+
+        pipeline = Pipeline()
+        pipeline.add_node(component=retriever, name="retiever", inputs=["Query"])
+        pipeline.add_node(component=prompt_node, name="prompt", inputs=["retiever"])
+        return pipeline
+    
+    def model_answers(self, pipeline, question):
+        answer = pipeline.run(query=question)
+        return answer["answers"][0].answer
+    
