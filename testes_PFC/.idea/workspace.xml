@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="cba4623d-39e3-4b6e-bc78-c0b3411116a7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/GUI-tests/guiv1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI-tests/pharmacy.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OOP_prototype/bulid-test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OOP_prototype/openAI/bulid_man/bulid.py" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_prototype/openAI/bulid_man/bulid.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OOP_prototype/openAI/doc_store/document_store.py" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_prototype/openAI/doc_store/document_store.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OOP_prototype/openAI/rag_model/rag.py" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_prototype/openAI/rag_model/rag.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OOP_prototype/openAI/retriever/bm_25_retriever.py" beforeDir="false" afterPath="$PROJECT_DIR$/OOP_prototype/openAI/retriever/bm_25_retriever.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2-openAI/haystack_v2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/v2-openAI/haystack_v2.ipynb" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 1
+}]]></component>
+  <component name="ProjectId" id="2eyB47kpQ2btZV2AcfEzFR2KVCT" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.bulid_test.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/h_e_m/OneDrive - Instituto Superior de Engenharia de Lisboa/LEIM/6º Semestre/Projeto Final",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-0509580d9d50-746f403e7f0c-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.14494.241" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cba4623d-39e3-4b6e-bc78-c0b3411116a7" name="Changes" comment="" />
+      <created>1712866743934</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1712866743934</updated>
+    </task>
+    <servers />
+  </component>
+</project>
