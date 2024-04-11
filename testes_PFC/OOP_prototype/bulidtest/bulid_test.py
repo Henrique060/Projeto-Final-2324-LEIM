@@ -1,7 +1,7 @@
-from openAI.doc_store.document_store import DocumentStoreModel
-from openAI.rag_model.rag import RAG
-from openAI.retriever.bm_25_retriever import BM25RetrieverCustom
-from openAI.bulid_man.bulid import BulID
+from testes_PFC.OOP_prototype.openAI.doc_store.document_store import DocumentStoreModel
+from testes_PFC.OOP_prototype.openAI.rag_model.rag import RAG
+from testes_PFC.OOP_prototype.openAI.retriever.bm_25_retriever import BM25RetrieverCustom
+from testes_PFC.OOP_prototype.openAI.bulid_man.bulid import BulID
 
 import logging
 

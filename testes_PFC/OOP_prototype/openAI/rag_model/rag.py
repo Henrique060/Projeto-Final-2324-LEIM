@@ -34,7 +34,7 @@ class RAG:
 
         print("\n A iniciar a resposta do modelo...")
         answer = pipeline.run(query=question)
-        print (answer["answers"][0].answer)
+        print(answer["answers"][0].answer)
     
         #return pipeline
     
