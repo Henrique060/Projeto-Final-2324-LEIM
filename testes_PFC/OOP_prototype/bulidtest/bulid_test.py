@@ -34,8 +34,11 @@ def logic_test_v1(quest):
 #init()
 
 
-## _________________________________________________ CAGAR NISTO ABAIXO _______________________________________________
+## _________________________________________________ ESQUECER ISTO ABAIXO _______________________________________________
 
 #answer = rag_model.model_answers(pipeline, question)
 #print(answer)	
 
+
+question = "Benuron pode ser tomado por quem tem intolerância à lactose?"
+logic_test_v1(question)

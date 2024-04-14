@@ -18,8 +18,7 @@ class RAG:
         rag_prompt= PromptTemplate(name="analysis-prompt",
                                    prompt_text="""Synthesize a comprehensive answer from the following text for the given question.
                              Provide a clear and concise response that summarizes the key points and information presented in the text.
-                             Your answer should be in your own words and summarized to the maximum. If summarization
-                             is not possible, the answer should be no longer than 200 words.
+                             Your answer should be in your own words and no longer than 50 words. Answer accordingly to the language of the text.
                              \n\n Related text: {join(documents)} \n\n Question: {query} \n\n Answer:""",
                     output_parser=AnswerParser(),)
         prompt_node = PromptNode(model_name_or_path="gpt-3.5-turbo", 

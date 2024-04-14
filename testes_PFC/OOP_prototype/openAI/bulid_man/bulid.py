@@ -24,7 +24,8 @@ class BulID:
         return parsed_data[0]
     
     def key_init(self):
-        openai_key = os.getenv(self._open_ai_key, None) or getpass("Please enter your OpenAI API key: ")
+        #openai_key = os.getenv(self._open_ai_key, None) or getpass("Please enter your OpenAI API key: ")
+        openai_key = "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"
         return openai_key
     
     def init_doc_store(self):

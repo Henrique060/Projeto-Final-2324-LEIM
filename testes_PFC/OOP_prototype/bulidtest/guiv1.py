@@ -90,4 +90,3 @@ class GUI:
 
 if __name__ == "__main__":
     gui = GUI()
-    gui.load_bul_id_logic()
