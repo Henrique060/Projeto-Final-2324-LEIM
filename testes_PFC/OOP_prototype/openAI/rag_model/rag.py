@@ -6,7 +6,7 @@ import logging
 
 class RAG:
 
-    def __init__(self, doc_store, model_name_or_path="gpt-3.5-turbo", key="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"):
+    def __init__(self, doc_store, model_name_or_path="gpt-4", key="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"):
         self.key = key
         self.doc_store = doc_store
         self.model_name_or_path = model_name_or_path
@@ -18,10 +18,11 @@ class RAG:
         rag_prompt= PromptTemplate(name="analysis-prompt",
                                    prompt_text="""Synthesize a comprehensive answer from the following text for the given question.
                              Provide a clear and concise response that summarizes the key points and information presented in the text.
-                             Your answer should be in your own words and no longer than 50 words. Answer accordingly to the language of the text.
+                             Your answer should be in your own words and summarized to 50 words.
+                             Always answer in Portuguese.
                              \n\n Related text: {join(documents)} \n\n Question: {query} \n\n Answer:""",
                     output_parser=AnswerParser(),)
-        prompt_node = PromptNode(model_name_or_path="gpt-3.5-turbo", 
+        prompt_node = PromptNode(model_name_or_path="gpt-4", 
                                  api_key=self.key, 
                                  default_prompt_template=rag_prompt)
 

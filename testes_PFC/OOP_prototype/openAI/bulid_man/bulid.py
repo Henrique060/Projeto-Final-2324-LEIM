@@ -14,7 +14,7 @@ import json
 class BulID:
 
     def __init__(self):
-        self._open_ai_key = "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"
+        self._open_ai_key = "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"
 
     def dataset_parsed(self, doc_path):
         print("A fazer parsing...")
@@ -25,15 +25,16 @@ class BulID:
     
     def key_init(self):
         #openai_key = os.getenv(self._open_ai_key, None) or getpass("Please enter your OpenAI API key: ")
-        openai_key = "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"
+        openai_key = "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"
         return openai_key
     
     def init_doc_store(self):
         return InMemoryDocumentStore(use_bm25=True)
 
-    def write_documents(self, dataset, doc_store):
+    def write_documents(self, dataset, doc_store, med_name):
+
         print("A escrever os documentos...")
-        doc_store.write_documents([Document(content=dataset)])
+        doc_store.write_documents(med_name)
 
     
     

@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from PIL import ImageTk, Image
-from bulid_test import logic_test_v1
+#from bulid_test import logic_test_v1
 
 
 class GUI:
@@ -15,7 +15,7 @@ class GUI:
         self.window.geometry(f"{self.window_size}")
         self.window.resizable(False, False)
 
-        self.image = Image.open("pharmacy.png")
+        self.image = Image.open("OOP_prototype/bulidtest/pharmacy.png")
         image = self.image.resize((100, 100))
         image_res = ImageTk.PhotoImage(image)
         label_image = tk.Label(self.window, image=image_res, bg='#AFE9DE')
