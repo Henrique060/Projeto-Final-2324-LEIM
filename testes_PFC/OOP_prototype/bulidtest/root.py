@@ -7,24 +7,21 @@ from guiv3_alergias import AlergyApp
 from guiv3_principios import PrincipiosAPP
 from guiv3_outros import OutrosAPP
 from haystack.document_stores import InMemoryDocumentStore
-from bulid_test import logic_test_v1
-
+from bulid_test import logic_load_dataset_bulid
 
 
 class AppController:
 
     def __init__(self):
         self.root = ctk.CTkToplevel()
-        self.med_name = 'Brufen'
-        
-        # Initialize the document store with BM25
-        self.document_store = InMemoryDocumentStore(use_bm25=True)
-        logging.info('Document store initialized with BM25')
+        #self.med_name = 'Brufen'
 
-        # Initialize the model
-        self.model = logic_test_v1(self.med_name, self.document_store)
-        logging.info('Model initialized with medication name: %s', self.med_name)
+        self.root.title("BulID")
         
+        # Initialize the model
+        self.dataset, self.bulid = logic_load_dataset_bulid()
+
+
         self.current_app = None
         self.root.resizable(False, False)
         self.show_alergy_app()  # Call the method with parentheses
@@ -32,7 +29,7 @@ class AppController:
     def show_alergy_app(self):
         if self.current_app:  # Check if current_app exists before destroying it
             self.current_app.destroy()
-        self.current_app = AlergyApp(self.root, self, self.model, self.med_name)
+        self.current_app = AlergyApp(self.root, self.bulid, self.dataset, self)
         self.current_app.pack(fill="both", expand=True)
 
     def show_principios_app(self):

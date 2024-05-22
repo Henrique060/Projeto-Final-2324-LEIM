@@ -2,14 +2,14 @@ import customtkinter
 import tkinter
 from PIL import Image, ImageTk
 
-from bulid_test import ask_question, logic_test_v1
+from bulid_test import ask_question, logic_load_rag
 
 class AlergyApp(customtkinter.CTkFrame):
-    def __init__(self, root, controller, model, med_name):
+    def __init__(self, root, model, dataset, controller):
         super().__init__(root)
         self.root = root
+        self.dataset = dataset
         self.controller = controller
-        self.med_name = med_name
         self.model = model
         self.root.geometry("900x700")
         self.configure(fg_color="#AFE9DE")
@@ -220,9 +220,9 @@ class AlergyApp(customtkinter.CTkFrame):
             button.place(relx=relx, rely=rely, anchor=tkinter.CENTER)
 
     def submit_med_name(self):
-        med_name = self.med_entry.get()
-        print('Medicamento inserido:', med_name)
-        return med_name
+        self.med_name = self.med_entry.get()
+        print('Medicamento inserido:', self.med_name)
+        return self.med_name
 
     def lactose(self):
         self.alergy_list.append('Lactose')
@@ -257,9 +257,10 @@ class AlergyApp(customtkinter.CTkFrame):
         self.submit_alergy()
         texto = f"O {self.medicamento_place()} contém {self.alergias_place()}?"
         self.query_output.configure(text=texto)
-        model_answer = ask_question(texto, self.model)
-        self.output.configure(text=model_answer)
-        self.update()
+
+        nome_medicamento = self.medicamento_place()
+        rag = logic_load_rag(self.dataset, self.model, nome_medicamento)
+        ask_question(texto, rag)
         
      
     def principios_change_activity(self):
