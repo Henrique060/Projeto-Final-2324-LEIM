@@ -30,6 +30,8 @@ class LoginGUI:
         self.root.geometry("800x600")
         self.root.title("Login")
         self.root.resizable(False, False)
+        self.root.configure(fg_color="#AFE9DE")
+       
 
         self.username = ctk.CTkLabel(master=self.root,
                                   text="Username:",
