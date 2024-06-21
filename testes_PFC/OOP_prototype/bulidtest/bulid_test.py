@@ -79,7 +79,8 @@ def logic_test_v1(med_name_to_fetch):
     """
 
 def ask_question(question, rag_model):
-    rag_model.prompt_initializer(question)
+    return rag_model.prompt_initializer(question)
+    
 
 #init()
 
@@ -97,4 +98,13 @@ def ask_question(question, rag_model):
 #model = logic_load_rag(dataset, bul_id, 'nolotil')
 #question = input("\n Apresente a sua questão ao modelo: ")
 #ask_question(question, model)
+
+
+## Testar
+
+#dataset, bul_id = logic_load_dataset_bulid()
+#model = logic_load_rag(dataset, bul_id, 'nolotil')
+#question = input("\n Apresente a sua questão ao modelo: ")
+#ask_question(question, model)
+
 

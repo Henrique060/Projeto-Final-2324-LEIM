@@ -2,10 +2,17 @@ import customtkinter as ctk
 import tkinter
 from PIL import Image
 
+from bulid_test import ask_question, logic_load_rag
+
 class PrincipiosAPP(ctk.CTkFrame):
-    def __init__(self, root, controller):
+    def __init__(self, root, model, dataset, session, db, user_id, controller):
         super().__init__(root)
         self.root = root
+        self.dataset = dataset
+        self.model = model
+        self.session = session
+        self.db = db
+        self.user_id = user_id
         self.controller = controller
         self.root.geometry("900x700")
         self.configure(fg_color="#AFE9DE")
@@ -95,16 +102,39 @@ class PrincipiosAPP(ctk.CTkFrame):
                                     corner_radius=8)
         result_label.place(relx=0.15, rely=0.8, anchor=tkinter.CENTER)
 
+
+        ## Criar uma zona de output com texto que se adapta ao que é inserido
+        self.query_output_label = ctk.CTkLabel(master=self,
+                                                            text="Questão",
+                                                            width=80,
+                                                            height=25,
+                                                            text_color=self.txt_color,
+                                                            fg_color=self.bg_color,
+                                                            bg_color=self.bg_color,
+                                                            font=("Roboto", 15),
+                                                            corner_radius=8)
+        self.query_output_label.place(relx=0.1, rely=0.59, anchor=tkinter.CENTER)
+
+        self.query_output = ctk.CTkLabel(master=self,
+                                                    text="O <<MEDICAMENTO>> contém o <<PRINCIPIO ATIVO>> e <<EXCIPIENTE>>?",
+                                                    width=800,
+                                                    height=25,
+                                                    text_color=self.txt_color,
+                                                    fg_color="white",
+                                                    bg_color=self.bg_color,
+                                                    font=("Roboto", 15),
+                                                    corner_radius=8)
+        self.query_output.place(relx=0.5, rely=0.63, anchor=tkinter.CENTER)
+
         ## OUTPUT
-        self.output = ctk.CTkLabel(master=self,
-                                   text="",
-                                   width=800,
-                                   height=100,
-                                   text_color=self.txt_color,
-                                   fg_color="white",
-                                   bg_color=self.bg_color,
-                                   font=("Roboto", 15),
-                                   corner_radius=8)
+        self.output = ctk.CTkTextbox(master=self,
+                                                    width=800,
+                                                    height=100,
+                                                    text_color=self.txt_color,
+                                                    fg_color="white",
+                                                    bg_color=self.bg_color,
+                                                    font=("Roboto", 15),
+                                                    corner_radius=8)
         self.output.place(relx=0.5, rely=0.9, anchor=tkinter.CENTER)
 
     def create_button(self, text, relx, rely, command):
@@ -149,11 +179,66 @@ class PrincipiosAPP(ctk.CTkFrame):
         med_name = self.med_entry.get()
         print('Medicamento inserido:', med_name)
         return med_name
+    
+    def submit_principio_name(self):
+        principio_name = self.principios_entry.get()
+        print('Principio Ativo: ', principio_name)
+        return principio_name
+    
+    def submit_excipiente_name(self):
+        if self.excipiente_entry.get() == "":
+            return None
+        else:
+            excipiente_name = self.excipiente_entry.get()
+            print('Excipiente inserido:', excipiente_name)
+            return excipiente_name
 
     def button_click(self):
+        self.submit_med_name()
+        self.submit_principio_name()
+        self.submit_excipiente_name()
+
+        if self.submit_med_name() == "" or self.submit_principio_name() == "":
+            self.output.configure(text="Por favor preencha todos os campos obrigatórios")
+            return
+        
+        if self.submit_excipiente_name() == None:
+            texto = f"O medicamento {self.submit_med_name()} contém o princípio ativo {self.submit_principio_name()}?"
+            self.query_output.configure(text=texto)
+            print(texto)
+        else:
+            texto = f"O medicamento {self.submit_med_name()} contém o princípio ativo {self.submit_principio_name()} e o excipiente {self.submit_excipiente_name()}?"
+            self.query_output.configure(text=texto)
+            print(texto)
+
+        nome_medicamento = self.medicamento_place()
+        rag = logic_load_rag(self.dataset, self.model, nome_medicamento)
+        response = ask_question(texto, rag)
+
+        self.output.insert("0.0", response)
+
+
+
+
         med_name = self.submit_med_name()
         print("Submitted Medication:", med_name)
         # Further logic to handle the entries from self.principios_entry and self.excipiente_entry
+
+
+    def medicamento_place(self):
+        med_name = str(self.submit_med_name())
+        return med_name
+    
+    def principio_name(self):
+        princip_name = str(self.submit_principio_name())
+        return princip_name
+    
+    def excipiente_name(self):
+        excip_name = str(self.submit_excipiente_name())
+        return excip_name
+
+
+
 
     def alergias_change_activity(self):
         self.controller.show_alergy_app()

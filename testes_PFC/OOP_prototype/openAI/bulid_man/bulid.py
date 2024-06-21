@@ -3,12 +3,6 @@ from haystack import Document
 from datasets import load_dataset
 from haystack.nodes import BM25Retriever
 
-import os
-from getpass import getpass
-from haystack.nodes import PromptNode, PromptTemplate, AnswerParser
-from haystack.pipelines import Pipeline
-import logging
-import pandas as pd
 import json
 
 class BulID:

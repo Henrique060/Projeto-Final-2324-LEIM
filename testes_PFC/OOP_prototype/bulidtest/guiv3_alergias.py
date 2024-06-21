@@ -5,13 +5,39 @@ from PIL import Image, ImageTk
 from bulid_test import ask_question, logic_load_rag
 
 class AlergyApp(customtkinter.CTkFrame):
+
+    lactose = False
+    ovos = False
+    nuts = False
+    penicilina = False
+    gluten = False
+    soja = True
+    fish = False
+    sulfitos = False
+
+
     def __init__(self, root, model, dataset, controller):
         super().__init__(root)
         self.root = root
         self.dataset = dataset
         self.controller = controller
         self.model = model
-        self.root.geometry("900x700")
+
+        # Define the desired width and height of the window
+        window_width = 900
+        window_height = 700
+        
+        # Get screen width and height
+        screen_width = self.root.winfo_screenwidth()
+        screen_height = self.root.winfo_screenheight()
+        
+        # Calculate x and y coordinates for centering the window
+        x = (screen_width // 2) - (window_width // 2)
+        y = (screen_height // 2) - (window_height // 2)
+        
+        # Set the geometry of the window
+        self.root.geometry(f"{window_width}x{window_height}+{x}+{y}")
+
         self.configure(fg_color="#AFE9DE")
         self.place(relx=0, rely=0, relwidth=1, relheight=1)
 
@@ -225,28 +251,47 @@ class AlergyApp(customtkinter.CTkFrame):
         return self.med_name
 
     def lactose(self):
-        self.alergy_list.append('Lactose')
+        if self.lactose == False:
+            self.alergy_list.append('Lactose')
+            self.lactose = True
+
+        
 
     def ovos(self):
-        self.alergy_list.append('Ovos')
+        if self.ovos == False:
+            self.alergy_list.append('Ovos')
+            self.ovos = True
 
     def nuts(self):
-        self.alergy_list.append('Frutos Secos')
+        if self.nuts == False:
+            self.alergy_list.append('Frutos Secos')
+            self.nuts = True
 
     def penicilina(self):
-        self.alergy_list.append('Penicilina')
+        if self.penicilina == False:
+            self.alergy_list.append('Penicilina')
+            self.penicilina = True
 
     def gluten(self):
-        self.alergy_list.append('Glúten')
+        if self.gluten == False:
+            self.alergy_list.append('Glúten')
+            self.gluten = True
 
     def soja(self):
-        self.alergy_list.append('Soja')
+        if self.soja == False:
+            self.alergy_list.append('Soja')
+            self.soja = True
+
 
     def fish(self):
-        self.alergy_list.append('Peixe')
+        if self.fish == False:
+            self.alergy_list.append('Peixe')
+            self.fish = True
 
     def sulfitos(self):
-        self.alergy_list.append('Sulfitos')
+        if self.sulfitos == False:
+            self.alergy_list.append('Sulfitos')
+            self.sulfitos = True
 
     def submit_alergy(self):
         print('Alergias:', self.alergy_list)

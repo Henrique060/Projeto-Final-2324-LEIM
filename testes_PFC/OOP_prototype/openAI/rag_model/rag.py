@@ -36,7 +36,7 @@ class RAG:
         answer = pipeline.run(query=question)
         print(answer["answers"][0].answer)
     
-        #return pipeline
+        return (answer["answers"][0].answer)
     
     """def pipeline_initializer(self):
         retriever = self.retriever
