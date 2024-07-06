@@ -26,7 +26,7 @@ class RAG:
     def prompt_initializer(self, question):
         """ Função responsável pela questão colocada ao modelo RAG.
          
-            Inicial o retriever, que tem o papel de 'motor de busca' da informação,
+            Inicia o retriever, que tem o papel de 'motor de busca' da informação,
             relativamente ao passo de 'Retrieval' da framework RAG.
             
             Utiliza o BM25Retriever, que atribui aos documentos uma pontuação

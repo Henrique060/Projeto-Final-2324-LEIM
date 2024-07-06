@@ -29,9 +29,9 @@ def ask_question(question, rag_model):
 
 ## Testar
 
-#dataset, bul_id = logic_load_dataset_bulid()
-#model = logic_load_rag(dataset, bul_id, 'nolotil')
-#question = input("\n Apresente a sua questão ao modelo: ")
-#ask_question(question, model)
+dataset, bul_id = logic_load_dataset_bulid()
+model = logic_load_rag(dataset, bul_id, 'norvasc')
+question = input("\n Apresente a sua questão ao modelo: ")
+ask_question(question, model)
 
 

@@ -1,0 +1,11 @@
+{
+    "benuron": {
+        "resposta_alergias": "Não, o Benuron não contém fenitoína nem frutos secos. Seu principal componente é o paracetamol.",
+        "principios": "ibuprofeno",
+        "excipiente": "cetirizina",
+        "outros": "['Vómitos', 'Maquinaria pesada']",
+        "resposta_outros": "O Benuron pode causar vômitos como efeito colateral, mas não interfere com a capacidade de conduzir máquinas pesadas. No entanto, é importante evitar atividades que exijam atenção, devido aos possíveis efeitos colaterais de sonolência e tonturas. É fundamental consultar um médico ou farmacêutico em caso de dúvidas.",
+        "alergias": "['Fenitoína', 'Frutos Secos']",
+        "resposta_principios": "Não, o medicamento Benuron contém o princípio ativo paracetamol e não contém o excipiente cetirizina. É importante ler o folheto informativo antes de usar o medicamento e seguir as orientações do médico."
+    }
+}

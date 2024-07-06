@@ -1,6 +1,9 @@
 from haystack.nodes import PromptNode, PromptTemplate, AnswerParser
 from haystack.pipelines import Pipeline
 from haystack.nodes import BM25Retriever
+import logging
+
+
 
 class RAG:
     """ Classe responsável pela lógica da framework RAG.
@@ -18,10 +21,13 @@ class RAG:
         concisa, clara e gramaticalmente correta
     """
 
-    def __init__(self, doc_store, model_name_or_path="gpt-4", key="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"):
+    def __init__(self, doc_store, model_name_or_path="gpt-3.5-turbo", key="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"):
         self.key = key
         self.doc_store = doc_store
         self.model_name_or_path = model_name_or_path
+
+        logging.basicConfig(format="%(levelname)s - %(name)s - %(message)s, level=logging.WARNING")
+        logging.getLogger("haystack").setLevel(logging.INFO)
 
     def prompt_initializer(self, question):
         """ Função responsável pela questão colocada ao modelo RAG.
@@ -46,10 +52,10 @@ class RAG:
         print("A iniciar o RAG model...")
         rag_prompt= PromptTemplate(name="analysis-prompt",
                                    prompt_text="""Synthesize a comprehensive answer from the following text for the given question.
-                             Provide a clear and concise response that summarizes the key points and information presented in the text.
-                             Your answer should be in your own words and summarized to 50 words.
-                             Always answer in Portuguese.
-                             \n\n Related text: {join(documents)} \n\n Question: {query} \n\n Answer:""",
+                                        Provide a clear and concise response that summarizes the key points and information presented in the text.
+                                        Your answer should be in your own words and summarized to 50 words.
+                                        Always answer in Portuguese.
+                                        \n\n Related text: {join(documents)} \n\n Question: {query} \n\n Answer:""",
                     output_parser=AnswerParser())
         prompt_node = PromptNode(model_name_or_path=self.model_name_or_path, 
                                  api_key=self.key, 
